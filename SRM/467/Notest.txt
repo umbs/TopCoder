@@ -1,0 +1,16 @@
+ShorterSuperSum:
+- Some reason, using a matrix to save already calculated sum of (k, n)
+  isn't working. 
+- Having totalSum as follows is also not working: 
+
+       for (i=1; i<=n; i++) 
+           totalSum += calculate(k-1, i); 
+       
+       Instead, calculating totalSum at terminating condition worked. Why
+       is this so? 
+
+       if (k==0) {
+           totalSum += n; 
+           return n; 
+       } 
+
