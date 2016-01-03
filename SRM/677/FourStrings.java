@@ -1,7 +1,9 @@
 /* SRM 677 Div 2, Lev 2.
- * This code passes 5 example tests but fails system tests. On Topcoder site,
- * it's unclear what caused failure. I'll continue to work on this and fix
- * the issue. */
+ *
+ * I copied (partially) the top submission in Java for this problem. The
+ * "brute force" permutations of all 4 strings are from that submission.
+ * Rest of string parsing algo is mine.
+ */
 public class FourStrings {
 
 	public static String superString(String a, String b) {
@@ -38,17 +40,36 @@ public class FourStrings {
 	public static int shortestLength(String a, String b, String c, String d) {
 		int res = Integer.MAX_VALUE;
 
-		String[] arr = {a, b, c, d};
+	    res = Math.min(res, superString(superString(superString(a, b), c), d).length());
+	    res = Math.min(res, superString(superString(superString(a, b), d), c).length());
+	    res = Math.min(res, superString(superString(superString(a, c), b), d).length());
+	    res = Math.min(res, superString(superString(superString(a, c), d), b).length());
+	    res = Math.min(res, superString(superString(superString(a, d), b), c).length());
+	    res = Math.min(res, superString(superString(superString(a, d), c), b).length());
+	    res = Math.min(res, superString(superString(superString(b, a), c), d).length());
+	    res = Math.min(res, superString(superString(superString(b, a), d), c).length());
+	    res = Math.min(res, superString(superString(superString(b, c), a), d).length());
+	    res = Math.min(res, superString(superString(superString(b, c), d), a).length());
+	    res = Math.min(res, superString(superString(superString(b, d), a), c).length());
+	    res = Math.min(res, superString(superString(superString(b, d), c), a).length());
+	    res = Math.min(res, superString(superString(superString(c, a), b), d).length());
+	    res = Math.min(res, superString(superString(superString(c, a), d), b).length());
+	    res = Math.min(res, superString(superString(superString(c, b), a), d).length());
+	    res = Math.min(res, superString(superString(superString(c, b), d), a).length());
+	    res = Math.min(res, superString(superString(superString(c, d), a), b).length());
+	    res = Math.min(res, superString(superString(superString(c, d), b), a).length());
+	    res = Math.min(res, superString(superString(superString(d, a), b), c).length());
+	    res = Math.min(res, superString(superString(superString(d, a), c), b).length());
+	    res = Math.min(res, superString(superString(superString(d, b), a), c).length());
+	    res = Math.min(res, superString(superString(superString(d, b), c), a).length());
+	    res = Math.min(res, superString(superString(superString(d, c), a), b).length());
+	    res = Math.min(res, superString(superString(superString(d, c), b), a).length());
 
-		for (int i=0; i<arr.length; i++) {
-			for (int j=0; j<arr.length; j++) {
-				res = Math.min(res, superString(arr[i], arr[j]).length());
-			}
-		}
 		return res;
 	}
 
+	/*
 	public static void main(String[] a) {
 		System.out.println("" + shortestLength(	"abbabadbd", "bsddsbdsd", "bas", "d"));
-	}
+	}*/
 }
